@@ -9,16 +9,16 @@ class Pedido {
 		seña min: 150d, nullable: true
     }
 	
+	static hasMany = [items: ItemPedido]
+	
 	User cliente
-	Producto producto
-	Paquete paquete
-	Integer cantidad
 	EstadoPedido estado
 	Date fechaPedido
 	Date fechaEntrega
 	String direccionEntrega
-	boolean recibirAvisos
 	Double seña
 	String motivoRechazo
 	String motivoCancelado
+	boolean recibirAvisos
+
 }

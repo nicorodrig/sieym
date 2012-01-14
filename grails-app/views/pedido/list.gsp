@@ -52,7 +52,7 @@
 					<th><g:message code="pedido.cliente.id.label"
 							default="ID Cliente" /></th>
 
-					<th><g:message code="pedido.producto.label" default="Nombre" /></th>
+					<th><g:message code="pedido.cliente.nombre.label" default="Nombre" /></th>
 
 					<g:sortableColumn property="estado"
 						title="${message(code: 'pedido.estado.label', default: 'Estado')}" />

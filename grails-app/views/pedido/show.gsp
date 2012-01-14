@@ -29,31 +29,15 @@
 		</g:if>
 		<ol class="property-list pedido">
 
-			<g:if test="${pedidoInstance?.producto}">
-				<li class="fieldcontain"><span id="producto-label"
+			<g:if test="${pedidoInstance?.cliente}">
+				<li class="fieldcontain"><span id="cliente-label"
 					class="property-label"><g:message
-							code="pedido.producto.label" default="Producto" /></span> <span
-					class="property-value" aria-labelledby="producto-label"><g:link
-							controller="producto" action="show"
-							id="${pedidoInstance?.producto?.id}">
-							${pedidoInstance?.producto?.nombre?.encodeAsHTML()}
+							code="pedido.cliente.label" default="Cliente" /></span> <span
+					class="property-value" aria-labelledby="cliente-label"><g:link
+							controller="user" action="show"
+							id="${pedidoInstance?.cliente?.id}">
+							${pedidoInstance?.cliente?.email?.encodeAsHTML()}
 						</g:link></span></li>
-			</g:if>
-
-			<g:if test="${pedidoInstance?.cantidad}">
-				<li class="fieldcontain"><span id="cantidad-label"
-					class="property-label"><g:message
-							code="pedido.cantidad.label" default="Cantidad" /></span> <span
-					class="property-value" aria-labelledby="cantidad-label"><g:fieldValue
-							bean="${pedidoInstance}" field="cantidad" /></span></li>
-			</g:if>
-
-			<g:if test="${pedidoInstance?.paquete}">
-				<li class="fieldcontain"><span id="paquete-label"
-					class="property-label"><g:message
-							code="pedido.paquete.label" default="Paquete" /></span> <span
-					class="property-value" aria-labelledby="paquete-label"><g:fieldValue
-							bean="${pedidoInstance}" field="paquete" /></span></li>
 			</g:if>
 
 			<g:if test="${pedidoInstance?.estado}">
@@ -66,29 +50,19 @@
 
 			<g:if test="${pedidoInstance?.motivoRechazo}">
 				<li class="fieldcontain"><span id="motivoRechazo-label"
-					class="property-label"><g:message code="pedido.motivoRechazo.label"
-							default="Motivo de Rechazo" /></span> <span class="property-value"
-					aria-labelledby="estado-label"><g:fieldValue
+					class="property-label"><g:message
+							code="pedido.motivoRechazo.label" default="Motivo de Rechazo" /></span>
+					<span class="property-value" aria-labelledby="estado-label"><g:fieldValue
 							bean="${pedidoInstance}" field="motivoRechazo" /></span></li>
 			</g:if>
 
 			<g:if test="${pedidoInstance?.motivoCancelado}">
 				<li class="fieldcontain"><span id="motivoCancelado-label"
-					class="property-label"><g:message code="pedido.motivoCancelado.label"
+					class="property-label"><g:message
+							code="pedido.motivoCancelado.label"
 							default="Motivo de Cancelación" /></span> <span class="property-value"
 					aria-labelledby="estado-label"><g:fieldValue
 							bean="${pedidoInstance}" field="motivoCancelado" /></span></li>
-			</g:if>
-
-			<g:if test="${pedidoInstance?.cliente}">
-				<li class="fieldcontain"><span id="cliente-label"
-					class="property-label"><g:message
-							code="pedido.cliente.label" default="Cliente" /></span> <span
-					class="property-value" aria-labelledby="cliente-label"><g:link
-							controller="user" action="show"
-							id="${pedidoInstance?.cliente?.id}">
-							${pedidoInstance?.cliente?.email?.encodeAsHTML()}
-						</g:link></span></li>
 			</g:if>
 
 			<g:if test="${pedidoInstance?.direccionEntrega}">
@@ -124,6 +98,12 @@
 					aria-labelledby="seña-label">$<g:fieldValue
 							bean="${pedidoInstance}" field="seña" /></span></li>
 			</g:if>
+
+			<li class="fieldcontain"><span id="items-label"
+				class="property-label"><g:message code="pedido.items.label"
+						default="Items" /></span> <span class="property-value"
+				aria-labelledby="items-label"> ${pedidoInstance.items.size()} <g:link
+						controller="itemPedido" action="list" id="${pedidoInstance.id}"> [Modificar]</g:link> </span></li>
 
 			<li class="fieldcontain"><span id="recibirAvisos-label"
 				class="property-label"><g:message

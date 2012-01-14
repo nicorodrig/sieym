@@ -2,6 +2,7 @@ import sieym.MateriaPrima;
 
 import sieym.ComponenteProducto;
 import sieym.EstadoPedido;
+import sieym.ItemPedido;
 import sieym.Logistica;
 import sieym.MateriaPrima;
 import sieym.Pedido;
@@ -49,9 +50,9 @@ class BootStrap {
 		Paquete paq = new Paquete(name: "A", descripcion: "Paquete tipo A", capacidad: 23, tiempoArmado: 30)
 		paq.save()
 		EstadoPedido.values()[0..3].each { def ep ->
-			2.times {
-				Pedido ped = new Pedido(cliente: user, producto: p, paquete: paq,
-						cantidad: 10, estado: ep, fechaPedido: new Date(), direccionEntrega: "Pichincha 1234")
+			2.times { def time ->
+				Set items = [new ItemPedido(producto: p, paquete: paq, cantidad: 5 * (1 + time) * (1 + ep.ordinal()))] as Set
+				Pedido ped = new Pedido(cliente: user, items: items, estado: ep, fechaPedido: new Date(), direccionEntrega: "Pichincha 1234")
 				ped.save()
 				println ped.errors
 			}
