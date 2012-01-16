@@ -7,5 +7,10 @@ class Producto {
     static constraints = {
     }
 	
+	List composicion
 	String nombre
+	
+	public float calcularCoeficienteProduccion(Fase fase) {
+		composicion.collect({it.materiaPrima.coeficienteProduccion[fase.nombre].valor * (it.porcentaje / 100)}).sum()
+	}
 }

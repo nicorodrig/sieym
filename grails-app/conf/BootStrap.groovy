@@ -51,7 +51,7 @@ class BootStrap {
 		paq.save()
 		EstadoPedido.values()[0..3].each { def ep ->
 			2.times { def time ->
-				Set items = [new ItemPedido(producto: p, paquete: paq, cantidad: 5 * (1 + time) * (1 + ep.ordinal()))] as Set
+				def items = [new ItemPedido(producto: p, paquete: paq, cantidad: 5 * (1 + time) * (1 + ep.ordinal()))]
 				Pedido ped = new Pedido(cliente: user, items: items, estado: ep, fechaPedido: new Date(), direccionEntrega: "Pichincha 1234")
 				ped.save()
 				println ped.errors

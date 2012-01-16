@@ -20,5 +20,15 @@ class Pedido {
 	String motivoRechazo
 	String motivoCancelado
 	boolean recibirAvisos
+	List items
 
+	public float calcularCoeficienteProduccion(Fase fase) {
+    	println items.collect({it.producto.calcularCoeficienteProduccion(fase)})
+		items.collect({it.producto.calcularCoeficienteProduccion(fase)}).sum()
+	}
+	
+	public float calcularDuracion(Maquina mq){
+		float d = mq.fase.duracion * mq.rendimiento * this.calcularCoeficienteProduccion(mq.fase)
+		d.trunc(2)
+	}
 }

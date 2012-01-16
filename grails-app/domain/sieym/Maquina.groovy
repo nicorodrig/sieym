@@ -5,6 +5,6 @@ class Maquina {
 	String descripcion
 	Fase fase
 	int capacidad
-	int rendimiento
+	float rendimiento
 	int temperatura
 }

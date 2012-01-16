@@ -31,7 +31,7 @@
 		<g:message code="maquina.rendimiento.label" default="Rendimiento" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:field type="number" name="rendimiento" required="" value="${fieldValue(bean: maquinaInstance, field: 'rendimiento')}"/>
+	<g:field type="number" name="rendimiento" step="0.1" required="" value="${fieldValue(bean: maquinaInstance, field: 'rendimiento')}"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: maquinaInstance, field: 'temperatura', 'error')} required">
