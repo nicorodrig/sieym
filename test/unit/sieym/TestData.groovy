@@ -24,12 +24,12 @@ class TestData {
 			Maquina mq1 = new Maquina(descripcion: "MQ1", fase: sapecado, capacidad: 60, rendimiento: 0.6)
 			Maquina mq2 = new Maquina(descripcion: "MQ2", fase: sapecado, capacidad: 180, rendimiento: 0.72)
 			Maquina mq3 = new Maquina(descripcion: "MQ3", fase: sapecado, capacidad: 240, rendimiento: 0.82)
-			Maquina mq4 = new Maquina(descripcion: "MQ4", fase: sapecado, capacidad: 100, rendimiento: 0.69)
+			Maquina mq4 = new Maquina(descripcion: "MQ4", fase: sapecado, capacidad: 50, rendimiento: 0.69)
 			this.maquinas = [(sapecado): [mq1, mq2, mq3, mq4]]
 		}
 		return this.maquinas
 	}
-	
+
 	public List createProductos() {
 		if(!this.productos) {
 			this.createFases()
@@ -54,29 +54,28 @@ class TestData {
 		}
 		return this.productos
 	}
-	
+
 	public Pedido createPedido() {
 		if(!this.pedido){
 			this.createProductos()
 			Paquete paq3 = new Paquete(name: "3 Tn", capacidad: 3)
 			Paquete paq5 = new Paquete(name: "5 Tn", capacidad: 5)
-			
+
 			this.pedido = new Pedido()
 			this.pedido.items = [
-			                new ItemPedido(producto: this.productos[0], paquete: paq3, cantidad: 24),
-			                new ItemPedido(producto: this.productos[1], paquete: paq5, cantidad: 6)
-			                ]
+				new ItemPedido(producto: this.productos[0], paquete: paq3, cantidad: 24),
+				new ItemPedido(producto: this.productos[1], paquete: paq5, cantidad: 6)
+			]
 		}
 		return this.pedido
 	}
-	
+
 	private MateriaPrima createMateriaPrima(String nombre, List cpValues) {
 		Map cp = [(this.fases[0].nombre): new CoeficienteProduccion(fase: this.fases[0], valor: cpValues[0]),
-			(this.fases[1].nombre): new CoeficienteProduccion(fase: this.fases[1], valor: cpValues[1]),
-			(this.fases[2].nombre): new CoeficienteProduccion(fase: this.fases[2], valor: cpValues[2])]
+					(this.fases[1].nombre): new CoeficienteProduccion(fase: this.fases[1], valor: cpValues[1]),
+					(this.fases[2].nombre): new CoeficienteProduccion(fase: this.fases[2], valor: cpValues[2])]
 		MateriaPrima mp = new MateriaPrima(nombre: nombre)
 		mp.coeficienteProduccion = cp
 		return mp
 	}
-
 }
