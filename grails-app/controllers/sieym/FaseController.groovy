@@ -1,5 +1,6 @@
 package sieym
 
+import org.joda.time.Duration;
 import org.springframework.dao.DataIntegrityViolationException
 
 class FaseController {
@@ -20,6 +21,7 @@ class FaseController {
     }
 
     def save() {
+		params.duracion = Duration.standardHours(params.duracion as Integer)
         def faseInstance = new Fase(params)
         if (!faseInstance.save(flush: true)) {
             render(view: "create", model: [faseInstance: faseInstance])
@@ -71,6 +73,7 @@ class FaseController {
             }
         }
 
+		params.duracion = Duration.standardHours(params.duracion as Integer)
         faseInstance.properties = params
 
         if (!faseInstance.save(flush: true)) {

@@ -22,9 +22,9 @@ class PedidioTests {
 		Pedido pedido = DATA.createPedido()
 		def (Maquina mq1, Maquina mq2, Maquina mq3, Maquina mq4) = DATA.createMaquinas()[sapecado]
 
-		assert pedido.calcularDuracion(mq2) == 167.76F
-		assert pedido.calcularDuracion(mq3) == 191.06F
-		assert pedido.calcularDuracion([mq1, mq4]) == 160.77F
+		assert pedido.calcularDuracion(mq2).standardHours == 167
+		assert pedido.calcularDuracion(mq3).standardHours == 191
+		assert pedido.calcularDuracion([mq1, mq4]).standardHours == 160
 	}
 
 	void testCalcularPesoTotal() {
@@ -51,10 +51,11 @@ class PedidioTests {
 		def (Maquina mq1, Maquina mq2, Maquina mq3, Maquina mq4) = mqs
 
 		def alternativas = [
-			[maquinas: [mq4, mq1], duracion: 160.77F],
-			[maquinas: [mq2], duracion: 167.76F],
-			[maquinas: [mq3], duracion: 191.06F],
+			[maquinas: [mq4, mq1], duracion: 160],
+			[maquinas: [mq2], duracion: 167],
+			[maquinas: [mq3], duracion: 191],
 		]
-		assert alternativas == pedido.generarAlternativasProduccion(mqs, sobrantes)
+		assert alternativas == pedido.generarAlternativasProduccion(mqs, sobrantes).collect(
+			{[maquinas: it.maquinas, duracion: it.duracion.standardHours]})
 	}
 }

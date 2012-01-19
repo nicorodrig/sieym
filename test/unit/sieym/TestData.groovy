@@ -1,5 +1,7 @@
 package sieym
 
+import org.joda.time.Duration;
+
 class TestData {
 
 	List fases
@@ -10,9 +12,9 @@ class TestData {
 
 	public List createFases() {
 		if(!this.fases){
-			Fase sapecado = new Fase(nombre: "Sapecado", duracion: 9)
-			Fase canchado = new Fase(nombre: "Canchado", duracion: 10)
-			Fase molienda = new Fase(nombre: "Molienda", duracion: 10)
+			Fase sapecado = new Fase(nombre: "Sapecado", duracion: Duration.standardHours(9))
+			Fase canchado = new Fase(nombre: "Canchado", duracion: Duration.standardHours(10))
+			Fase molienda = new Fase(nombre: "Molienda", duracion: Duration.standardHours(10))
 			this.fases = [sapecado, canchado, molienda]
 		}
 		return this.fases

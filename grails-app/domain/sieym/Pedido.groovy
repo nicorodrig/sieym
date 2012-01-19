@@ -1,5 +1,7 @@
 package sieym
 
+import org.joda.time.Duration;
+
 class Pedido {
 
     static constraints = {
@@ -27,12 +29,13 @@ class Pedido {
 		items.sum({it.producto.calcularCoeficienteProduccion(fase)})
 	}
 	
-	public float calcularDuracion(Maquina mq){
-		float d = mq.fase.duracion * mq.rendimiento * this.calcularCoeficienteProduccion(mq.fase)
-		d.trunc(2)
+	public Duration calcularDuracion(Maquina mq){
+		long d = mq.fase.duracion.millis * mq.rendimiento * this.calcularCoeficienteProduccion(mq.fase)
+		new Duration(d)
+//		d.trunc(2)
 	}
 	
-	public float calcularDuracion(List<Maquina> mqs){
+	public Duration calcularDuracion(List<Maquina> mqs){
 		mqs.collect({calcularDuracion it}).max()
 	}
 	

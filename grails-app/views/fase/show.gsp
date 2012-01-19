@@ -15,20 +15,20 @@
 			</g:if>
 			<ol class="property-list fase">
 			
-				<g:if test="${faseInstance?.duracion}">
-				<li class="fieldcontain">
-					<span id="duracion-label" class="property-label"><g:message code="fase.duracion.label" default="Duracion" /></span>
-					
-						<span class="property-value" aria-labelledby="duracion-label"><g:fieldValue bean="${faseInstance}" field="duracion"/></span>
-					
-				</li>
-				</g:if>
-			
 				<g:if test="${faseInstance?.nombre}">
 				<li class="fieldcontain">
 					<span id="nombre-label" class="property-label"><g:message code="fase.nombre.label" default="Nombre" /></span>
 					
 						<span class="property-value" aria-labelledby="nombre-label"><g:fieldValue bean="${faseInstance}" field="nombre"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${faseInstance?.duracion}">
+				<li class="fieldcontain">
+					<span id="duracion-label" class="property-label"><g:message code="fase.duracion.label" default="Duracion" /></span>
+					
+						<span class="property-value" aria-labelledby="duracion-label"><g:fieldValue bean="${faseInstance}" field="duracion.standardHours"/>hs</span>
 					
 				</li>
 				</g:if>

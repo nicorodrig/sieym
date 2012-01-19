@@ -1,7 +1,9 @@
 package sieym
 
+import org.joda.time.Duration;
+
 class Fase {
 
 	String nombre
-	int duracion
+	Duration duracion
 }

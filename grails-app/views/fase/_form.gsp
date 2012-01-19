@@ -16,6 +16,6 @@
 		<g:message code="fase.duracion.label" default="Duracion" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:field type="number" name="duracion" required="" value="${fieldValue(bean: faseInstance, field: 'duracion')}"/>
+	<g:field type="number" name="duracion" required="" value="${fieldValue(bean: faseInstance, field: 'duracion.standardHours')}"/>
 </div>
 
