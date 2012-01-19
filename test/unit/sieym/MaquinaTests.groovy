@@ -1,6 +1,12 @@
 package sieym
 
 import static org.junit.Assert.*
+import grails.test.mixin.*
+
+import org.joda.time.DateTime
+import org.joda.time.Days
+import org.joda.time.Hours
+import org.joda.time.Interval
 
 class MaquinaTests {
 
@@ -21,4 +27,23 @@ class MaquinaTests {
 		assert g1 == Maquina.agrupar(l1, 100)
 		assert g2 == Maquina.agrupar(l2, 200)
 	}
+
+	public void testVerificarDisponibilidad() {
+		DateTime now = new DateTime()
+		DateTime tomorrow = now.plusDays(1).minusHours(5)
+		DateTime otherDay = tomorrow.plusDays(4).minusHours(10)
+		Interval int1 = new Interval(tomorrow, Hours.hours(12))
+		Interval int2 = new Interval(otherDay, Days.days(3))
+		List reservas = [new ReservaMaquina(intervalo: int1), new ReservaMaquina(intervalo: int2)]
+
+		Maquina mqSinReservas = new Maquina()
+		assert null == mqSinReservas.verificarDisponibilidad()
+
+		Maquina mqUnaReserva = new Maquina(reservas: [reservas[0]])
+		assert 2 == mqUnaReserva.verificarDisponibilidad().size()
+		
+		Maquina mqVariasReservas = new Maquina(reservas: reservas)
+		assert 3 == mqVariasReservas.verificarDisponibilidad().size()
+	}
+
 }
